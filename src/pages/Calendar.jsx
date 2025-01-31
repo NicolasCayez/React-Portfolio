@@ -19,24 +19,27 @@ export default function Calendar() {
     ROW.push(<Day jour={i+1} className={"backgroundOrange"} onClick={(event)=>handleClick(event)}/>);
   }
   return (
-    <div className="content">
-      <div className='cardCustom orange'>
-        <FormCalendar onSubmit={(event)=>handleSubmit(event)}/>
+    <>
+      <h1>Calendar</h1>
+      <div className="content">
+        <div className='cardCustom orange'>
+          <FormCalendar onSubmit={(event)=>handleSubmit(event)}/>
+        </div>
+        <article className='cardCustom'>
+          <Day jour={MONTH[9]} className={'month'}/>
+          <section className='grid-7'>
+            {DAY_LETTER.map((oneDayLetter, index)=><div>{oneDayLetter}</div>)}
+          </section>
+          <section className='grid-7 days'>
+            {ROW.map((oneRow, index)=>oneRow)}
+          </section>
+        </article>
+        <article className='cardCustom orange' onChange={FormCalendar.onSubmit}>
+          <h2>Liste des évènements</h2>
+          <Liste liste={eventList}/>
+        </article>
       </div>
-      <article className='cardCustom'>
-        <Day jour={MONTH[9]} className={'month'}/>
-        <section className='grid-7'>
-          {DAY_LETTER.map((oneDayLetter, index)=><div>{oneDayLetter}</div>)}
-        </section>
-        <section className='grid-7 days'>
-          {ROW.map((oneRow, index)=>oneRow)}
-        </section>
-      </article>
-      <article className='cardCustom orange' onChange={FormCalendar.onSubmit}>
-        <h2>Liste des évènements</h2>
-        <Liste liste={eventList}/>
-      </article>
-    </div>
+    </>
   )
 
   function handleClick(event) {

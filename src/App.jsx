@@ -8,45 +8,45 @@ import Portfolio from './pages/Portfolio.jsx'
 import ToDoList from './pages/ToDoList.jsx'
 import './App.css'
 
-const router = createBrowserRouter([
+const ROUTER = createBrowserRouter([
   {
-    path: "/",
+    path: "",
     element: <Root />,
     children: [
       {
-        path: "",
+        path: "/",
         element: <Accueil />
+      },
+      {
+        path: "/portfolio",
+        element: <Portfolio />,
+        children: [
+          {
+            path: "/portfolio/carduser",
+            element: <CardUser />
+          },
+          {
+            path: "/portfolio/calendar",
+            element: <Calendar />
+          },
+          {
+            path: "/portfolio/todolist",
+            element: <ToDoList />
+          }
+        ]
+      },
+      {
+        path: "/contact",
+        element: <Contact />
       }
     ],
     errorElement: <PageError />
   },
-  {
-    path: "/portfolio",
-    element: <Portfolio />,
-    children: [
-      {
-        path: "/portfolio/carduser",
-        element: <CardUser />
-      },
-      {
-        path: "/portfolio/calendar",
-        element: <Calendar />
-      },
-      {
-        path: "/portfolio/todolist",
-        element: <ToDoList />
-      }
-    ]
-  },
-  {
-    path: "/contact",
-    element: <Contact />
-  }
 ])
 
 export default function App() {
   return (
-    <RouterProvider router={router} />
+    <RouterProvider router={ROUTER} />
   )
 }
 
